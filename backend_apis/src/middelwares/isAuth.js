@@ -3,27 +3,22 @@ import UserSchema from "../models/schema/UserSchema";
 
 const isAuth = async (req, res, next) => {
   try {
-    const token = req.headers.token;
-    if (!req.session.logintoken) {
-      if (!token) {
-        return res.status(401).json({
-          data: {},
-          error: [
-            {
-              data: {},
-              errors: [
-                {
-                  value: "token",
-                  msg: "Login first",
-                  param: "token",
-                  location: "headers",
-                },
-              ],
-            },
-          ],
-          message: "Please login!!",
-        });
-      }
+    const token = req.cookies.customerToken;
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        status: 400,
+        data: {},
+        error: [
+          {
+            value: "token",
+            msg: "Login first",
+            param: "token",
+            location: "headers",
+          },
+        ],
+        message: "Please login!!",
+      });
     }
 
     const decode = jwt.verify(token, process.env.jwt_secret);

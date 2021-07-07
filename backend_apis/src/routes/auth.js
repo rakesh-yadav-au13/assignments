@@ -11,7 +11,11 @@ import {
   validateChild,
 } from "../utils/sanitizeAndValidate";
 
-import { AuthLogin, AuthRegister } from "../controlers/AuthControler";
+import {
+  AuthLogin,
+  AuthLogout,
+  AuthRegister,
+} from "../controlers/AuthControler";
 
 import { CreateState, GetState } from "../controlers/StateControler";
 
@@ -22,6 +26,8 @@ import isFileValid from "../middelwares/isFileValid";
 router.post("/register", validateRegister, isRequestValidate, AuthRegister);
 
 router.post("/login", validateLogin, isRequestValidate, AuthLogin);
+
+router.get("/logout", isAuth, AuthLogout);
 
 router.get("/get_state", isAuth, GetState);
 

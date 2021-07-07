@@ -81,7 +81,11 @@ export const AuthLogin = async (req, res) => {
     const logintoken = jwt.sign({ id: user._id }, process.env.jwt_secret, {
       expiresIn: "1d",
     });
-    req.session.logintoken = logintoken;
+    res.cookie("customerToken", logintoken, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+      sameSite: "none",
+    });
     res.status(200).json({
       success: true,
       status: 200,
@@ -92,4 +96,15 @@ export const AuthLogin = async (req, res) => {
   } catch (error) {
     console.log(error.message);
   }
+};
+
+export const AuthLogout = (req, res) => {
+  res.clearCookie("customerToken");
+  return res.status(200).json({
+    success: true,
+    status: 200,
+    data: {},
+    errors: [],
+    message: "Logout Successfully",
+  });
 };

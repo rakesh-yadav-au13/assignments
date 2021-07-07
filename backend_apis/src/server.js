@@ -1,5 +1,5 @@
 import express from "express";
-import session from "express-session";
+import cookieParser from "cookie-parser";
 import fileupload from "express-fileupload";
 import DbConnection from "./models/DBConfig";
 require("dotenv").config();
@@ -15,13 +15,7 @@ app.use(
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(
-  session({
-    secret: process.env.session_secret,
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+app.use(cookieParser());
 
 app.get("/health", (req, res) => {
   try {
