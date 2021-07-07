@@ -1,0 +1,124 @@
+.child_container {
+  min-height: 100vh;
+}
+.child_heading {
+  color: tomato;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.underline {
+  background: black;
+  height: 3px;
+  width: 150px;
+  margin: auto;
+  border-radius: 10px;
+}
+
+/* Child Comp CSS */
+.child_details {
+  padding: 3% 0px;
+  width: 80%;
+  margin: auto;
+}
+
+.go_btn {
+  text-align: right;
+  padding: 20px;
+}
+.go_btn > button {
+  padding: 10px 20px;
+  background: tomato;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  border: 2px solid tomato;
+  transition: 1s;
+  cursor: pointer;
+}
+.go_btn > button:hover {
+  background-color: white;
+  color: tomato;
+}
+
+/*  tabel Css */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table td,
+.table th {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 16px;
+}
+
+.table th {
+  background-color: darkcyan;
+  color: #fff;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f5f5f5;
+  width: 100%;
+}
+
+/* chart CSS */
+
+.chart {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.NoDataFound_container {
+  width: 50%;
+  margin: auto;
+  height: 30vh;
+  border-radius: 20px;
+  background-color: tomato;
+}
+.NoDataFound {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+@media (max-width: 760px) {
+  .table thead {
+    display: none;
+  }
+
+  .table,
+  .table tbody,
+  .table tr,
+  .table td {
+    display: block;
+    width: 100%;
+  }
+  .table tr {
+    margin-bottom: 15px;
+  }
+  .table td {
+    text-align: right;
+    position: relative;
+    padding-left: 50%;
+    font-weight: 400;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-weight: 600;
+    text-align: left;
+  }
+}
